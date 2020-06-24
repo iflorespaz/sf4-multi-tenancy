@@ -17,7 +17,7 @@ class TenantFixtures extends Fixture
             ->setName('Fist Tenant')
             ->setDbname($prefix . 'tenant1')
             ->setDbUser('root')
-            ->setDbpassword('');
+            ->setDbpassword('pass');
         $manager->persist($tenant);
 
         $tenant = new Tenant();
@@ -25,7 +25,7 @@ class TenantFixtures extends Fixture
             ->setName('Second Tenant')
             ->setDbname($prefix . 'tenant2')
             ->setDbUser('root')
-            ->setDbpassword('');
+            ->setDbpassword('pass');
         $manager->persist($tenant);
 
         $manager->flush();
