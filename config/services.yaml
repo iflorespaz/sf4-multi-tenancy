@@ -22,8 +22,8 @@ parameters:
     - doctrine:mapping:info
 
   fixtures:
-    main: '%kernel.root_dir%/../src/App/DataFixtures/Main'
-    tenant: '%kernel.root_dir%/../src/App/DataFixtures/Tenant'
+    main: '%kernel.project_dir%/../src/App/DataFixtures/Main'
+    tenant: '%kernel.project_dir%/../src/App/DataFixtures/Tenant'
 
 services:
   # default configuration for services in *this* file
@@ -62,6 +62,6 @@ services:
 
   main.repository.tenant:
     class: App\Repository\Main\TenantRepository
-    factory: 'doctrine.orm.main_entity_manager:getRepository'
+    factory: ['@doctrine.orm.main_entity_manager', 'getRepository']
     arguments:
       - App\Entity\Main\Tenant

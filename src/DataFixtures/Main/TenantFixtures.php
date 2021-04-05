@@ -4,7 +4,7 @@ namespace App\DataFixtures\Main;
 
 use App\Entity\Main\Tenant;
 use Doctrine\Bundle\FixturesBundle\Fixture;
-use Doctrine\Common\Persistence\ObjectManager;
+use Doctrine\Persistence\ObjectManager;
 
 class TenantFixtures extends Fixture
 {
@@ -15,17 +15,19 @@ class TenantFixtures extends Fixture
         $tenant = new Tenant();
         $tenant
             ->setName('Fist Tenant')
-            ->setDbname($prefix . 'tenant1')
+            ->setDbname($prefix.'tenant1')
             ->setDbUser('root')
-            ->setDbpassword('pass');
+            ->setDbpassword('Doorkibs1984$')
+        ;
         $manager->persist($tenant);
 
         $tenant = new Tenant();
         $tenant
             ->setName('Second Tenant')
-            ->setDbname($prefix . 'tenant2')
+            ->setDbname($prefix.'tenant2')
             ->setDbUser('root')
-            ->setDbpassword('pass');
+            ->setDbpassword('Doorkibs1984$')
+        ;
         $manager->persist($tenant);
 
         $manager->flush();
