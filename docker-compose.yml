@@ -1,0 +1,55 @@
+version: '3.6'
+
+services:
+
+  web:
+    image: josefjebavy/debian-apache-php7.3-symfony
+    container_name: sf-multitenancy_web
+    volumes:
+      - .:/var/www/html
+    working_dir: /var/www/html
+
+    networks:
+      - sf-multitenancy-network
+    ports:
+      - 7080:80
+
+  database:
+    image: mariadb:10.3
+    container_name: sf-multitenancy_database
+
+    environment:
+      - MYSQL_ROOT_PASSWORD=pass
+      - MYSQL_DATABASE=sf-multitenancy
+      - MYSQL_INITDB_SKIP_TZINFO=1 # toto vyreni prni start
+      - MYSQL_USER=user
+      - MYSQL_PASSWORD=secret
+    volumes:
+      - ./docker/development/database:/docker-entrypoint-initdb.d/
+    networks:
+      - sf-multitenancy-network
+
+  phpmyadmin:
+    depends_on:
+      - database
+    image: phpmyadmin/phpmyadmin
+    #    restart: always
+    ports:
+      - '7083:80'
+    environment:
+      PMA_HOST: database
+      MYSQL_ROOT_PASSWORD: pass
+    networks:
+      - sf-multitenancy-network
+
+  composer:
+          image: composer:latest
+          volumes:
+                - ./:/app
+          working_dir: /app
+          command: composer install --ignore-platform-reqs
+        
+networks:
+  sf-multitenancy-network:
+    driver: bridge
+

@@ -1,4 +1,4 @@
-# Symfony 4 multi-tenancy configuration #
+# Symfony 5 multi-tenancy configuration #
 
 ## Installation ##
 * Configure .env.dev.local for Main database connection
@@ -32,6 +32,14 @@ bin/console doctrine:database:create --tenant=multitenancy_tenant1
 bin/console doctrine:database:create --tenant=multitenancy_tenant2
 bin/console doctrine:schema:create --tenant=multitenancy_tenant1
 bin/console doctrine:schema:create --tenant=multitenancy_tenant2
+```
+
+* Run console commands for migrate Tenant DB
+
+```
+bin/console doctrine:schema:update  --tenant=multitenancy_tenant1
+bin/console doctrine:schema:update  --dump-sql --tenant=multitenancy_tenant1
+bin/console doctrine:schema:update  --force --tenant=multitenancy_tenant1  
 ```
 
 * Add some data to User table in tenant's databases.
