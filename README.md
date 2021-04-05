@@ -1,4 +1,4 @@
-# Symfony 5 multi-tenancy configuration #
+# Symfony 5.2 multi-tenancy configuration #
 
 ## Installation ##
 * Configure .env.dev.local for Main database connection
